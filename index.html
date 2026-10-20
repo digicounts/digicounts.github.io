@@ -245,6 +245,42 @@
       .plan .spacer { flex: 1; }
       .plan .btn { margin-top: 18px; }
 
+      /* ---------- Netflix own-Gmail plan ---------- */
+      .plan-own {
+        margin-top: 26px;
+        background: linear-gradient(90deg, rgba(245,183,62,0.10), var(--panel) 55%);
+        border: 1px solid rgba(245,183,62,0.45);
+        border-radius: var(--radius);
+        padding: 24px 22px 22px;
+        display: flex; align-items: center; gap: 18px 26px; flex-wrap: wrap;
+        position: relative;
+      }
+      .plan-own .flag {
+        position: absolute; top: -11px; left: 20px;
+        background: var(--gold); color: #2b1d00;
+        font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+        padding: 3px 10px; border-radius: 999px;
+      }
+      .plan-own .own-main { flex: 1 1 300px; min-width: 0; }
+      .plan-own .dur {
+        font-family: var(--font-display);
+        font-size: 26px; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase;
+        line-height: 1.1;
+      }
+      .plan-own .own-sub { color: var(--muted); font-size: 15.5px; margin: 6px 0 0; line-height: 1.5; }
+      .plan-own .own-sub strong { color: var(--ink); }
+      .plan-own .own-price { flex: none; }
+      .plan-own .price {
+        font-family: var(--font-display);
+        font-size: 46px; font-weight: 700; line-height: 1.05;
+      }
+      .plan-own .price small { font-size: 19px; color: var(--muted); font-weight: 600; letter-spacing: 0.03em; }
+      .plan-own .per { color: var(--faint); font-size: 14.5px; font-weight: 500; }
+      .plan-own .btn { flex: none; }
+      @media (max-width: 640px) {
+        .plan-own .btn { width: 100%; }
+      }
+
       /* ---------- product grid ---------- */
       .grid {
         display: grid; gap: 16px;
@@ -572,6 +608,18 @@
               <a class="btn btn-wa btn-block" href="https://wa.me/9779824278987?text=Hi%20Digicounts%2C%20I%20want%20Netflix%201%20Screen%204K%20-%2012%20Months%20(Rs%204%2C499)%20with%20Prime%20Video%20free" target="_blank" rel="noopener">Order this plan</a>
             </article>
           </div>
+          <article class="plan-own reveal">
+            <span class="flag">Your own account</span>
+            <div class="own-main">
+              <div class="dur">1 Month · 5 Screens</div>
+              <p class="own-sub">The full Netflix account is made on <strong>your own Gmail</strong> — 5 screens/profiles for the whole family, in full 4K UHD.</p>
+            </div>
+            <div class="own-price">
+              <div class="price"><small>Rs</small> 1,999</div>
+              <div class="per">1 month · 5 screens · 4K UHD</div>
+            </div>
+            <a class="btn btn-wa" href="https://wa.me/9779824278987?text=Hi%20Digicounts%2C%20I%20want%20Netflix%201%20Month%20%E2%80%93%205%20Screens%20on%20my%20own%20Gmail%20(4K%20UHD)%20%E2%80%93%20Rs%201%2C999" target="_blank" rel="noopener">Order this plan</a>
+          </article>
         </div>
       </section>
 
