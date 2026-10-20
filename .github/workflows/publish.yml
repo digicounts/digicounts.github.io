@@ -1,0 +1,19 @@
+name: Publish site
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch site file
+        run: curl -L "https://muse.ai/files/1430223946835860/4431928620455908/3p88enfeicbyyj0xy964029m/digicounts-lite.html" -o index.html && test -s index.html && head -c 100 index.html
+      - name: Commit index.html
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add index.html
+          git commit -m "Publish Digicounts site" || echo "nothing to commit"
+          git push
