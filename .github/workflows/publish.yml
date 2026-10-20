@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Fetch site file
-        run: curl -L "https://muse.ai/files/1430223946835860/4431928620455908/3p88enfeicbyyj0xy964029m/digicounts-lite.html" -o index.html && test -s index.html && head -c 100 index.html
+        run: curl -L "https://muse.ai/files/1430223946835860/2369685127134927/1mjmaskjdp9e6pc2dy5pxjdn/digicounts-lite.html" -o index.html && test -s index.html && head -c 100 index.html
       - name: Commit index.html
         run: |
           git config user.name "github-actions"
