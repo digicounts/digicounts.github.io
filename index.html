@@ -1453,22 +1453,10 @@
                   <option value="Other / Ask on WhatsApp">Other / Ask on WhatsApp</option>
                 </select>
               </div>
-              <div class="field" id="f-name">
-                <label for="orderName">Full name <span class="opt">(optional)</span></label>
-                <input id="orderName" name="name" type="text" autocomplete="name" placeholder="Your full name" />
-              </div>
-              <div class="field" id="f-whatsapp">
+              <div class="field full" id="f-whatsapp">
                 <label for="orderWhatsapp">WhatsApp number <span class="req">*</span></label>
                 <input id="orderWhatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="98XXXXXXXX" required />
                 <span class="err">Please enter your WhatsApp number.</span>
-              </div>
-              <div class="field full">
-                <label for="orderGmail">Gmail <span class="opt">(optional)</span></label>
-                <input id="orderGmail" name="gmail" type="email" autocomplete="email" placeholder="Your Gmail (needed for own-Gmail plans)" />
-              </div>
-              <div class="field full">
-                <label for="orderNote">Note <span class="opt">(optional)</span></label>
-                <textarea id="orderNote" name="note" placeholder="Anything we should know? (device, questions…)"></textarea>
               </div>
               <div class="order-actions">
                 <button type="submit" class="btn btn-red btn-block" id="orderSubmit">Place Order</button>
@@ -1522,7 +1510,7 @@
             <div class="step reveal">
               <div class="num">2</div>
               <h3>Place your order</h3>
-              <p>Add your WhatsApp number — the only field you must fill — and tap <strong>Place Order</strong>. Your name, plan and everything else are optional. We record it with the exact date &amp; time (Nepal time), and WhatsApp opens with your order ready to send — we confirm plan and price in the chat. We are online <strong>2 PM – 10 PM</strong> every day.</p>
+              <p>Choose your plan, add your WhatsApp number and tap <strong>Place Order</strong>. Your WhatsApp number is the only field you must fill. We record it with the exact date &amp; time (Nepal time), and WhatsApp opens with your order ready to send — we confirm plan and price in the chat. We are online <strong>2 PM – 10 PM</strong> every day.</p>
             </div>
             <div class="step reveal">
               <div class="num">3</div>
@@ -1790,10 +1778,7 @@
         var form = document.getElementById('orderForm');
         if (!form) return;
         var planSel = document.getElementById('orderPlan');
-        var nameIn = document.getElementById('orderName');
         var waIn = document.getElementById('orderWhatsapp');
-        var gmailIn = document.getElementById('orderGmail');
-        var noteIn = document.getElementById('orderNote');
         var submitBtn = document.getElementById('orderSubmit');
         var successBox = document.getElementById('orderSuccess');
         var payPanel = document.getElementById('payPanel');
@@ -1823,7 +1808,6 @@
           return !bad;
         }
         planSel.addEventListener('change', function () { setInvalid('f-plan', false); });
-        nameIn.addEventListener('input', function () { setInvalid('f-name', false); });
         waIn.addEventListener('input', function () { setInvalid('f-whatsapp', false); });
 
         function nepalDateTime(d) {
@@ -1842,10 +1826,7 @@
         form.addEventListener('submit', function (ev) {
           ev.preventDefault();
           var plan = planSel.value;
-          var name = nameIn.value.trim();
           var whatsapp = waIn.value.trim();
-          var gmail = gmailIn.value.trim();
-          var note = noteIn.value.trim();
 
           var ok = true;
           ok = setInvalid('f-whatsapp', !whatsapp) && ok;
@@ -1877,10 +1858,7 @@
             'Hi Digicounts, I placed an order from the website.\n' +
             (plan ? 'Plan: ' + plan + '\n' : '') +
             (priceText ? 'Total: ' + priceText + '\n' : '') +
-            (name ? 'Name: ' + name + '\n' : '') +
             'WhatsApp: ' + whatsapp +
-            (gmail ? '\nGmail: ' + gmail : '') +
-            (note ? '\nNote: ' + note : '') +
             '\nOrdered from website on ' + npt;
           var waOrderUrl = 'https://wa.me/9779824278987?text=' + encodeURIComponent(orderLines);
           var waPaidUrl = 'https://wa.me/9779824278987?text=' + encodeURIComponent(
@@ -1892,9 +1870,6 @@
             var p = document.createElement('strong');
             p.textContent = plan || 'Your order';
             paySummary.appendChild(p);
-            if (name) {
-              paySummary.appendChild(document.createTextNode(' — for ' + name));
-            }
             if (priceText) {
               payTotal.textContent = '';
               var tSmall = document.createElement('small');
@@ -1934,11 +1909,8 @@
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify({
               _subject: 'New Website Order — ' + (plan || 'No plan selected'),
-              name: name || '(not provided)',
               whatsapp: whatsapp,
-              gmail: gmail,
               plan: plan || '(not selected)',
-              note: note,
               order_datetime_nepal: npt,
               order_datetime_iso: iso
             })
