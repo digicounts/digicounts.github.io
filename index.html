@@ -549,6 +549,28 @@
         .ht-price { font-size: 11px; }
       }
 
+      /* ---------- referrals ---------- */
+      .referral-banner { display:grid; grid-template-columns:1fr auto; gap:28px; align-items:center; padding:32px; border:1px solid rgba(245,183,62,.4); border-radius:var(--radius); background:linear-gradient(120deg,rgba(245,183,62,.09),var(--panel) 60%); }
+      .referral-banner h2 { margin:8px 0 12px; font-family:var(--font-display); font-size:clamp(32px,5vw,48px); line-height:1.1; text-transform:uppercase; }
+      .referral-banner p { color:var(--muted); max-width:670px; margin:0 0 16px; }
+      .referral-perk { text-align:center; min-width:160px; padding:24px; border:1px solid var(--line); border-radius:14px; background:var(--panel-2); }
+      .referral-perk strong { display:block; font-family:var(--font-display); color:var(--gold); font-size:72px; line-height:1; }
+      .referral-perk span { display:block; color:var(--muted); margin-top:8px; }
+      .referral-actions { display:flex; gap:10px; flex-wrap:wrap; }
+      .referral-terms { margin-top:18px; color:var(--muted); font-size:14px; }
+      .referral-terms summary { cursor:pointer; color:var(--ink); font-weight:600; }
+      .referral-terms ul { padding-left:20px; margin-bottom:0; line-height:1.7; }
+      .referral-help { color:var(--muted); font-size:13.5px; line-height:1.5; }
+      .referral-consent { display:flex; align-items:flex-start; gap:10px; font-size:14px!important; font-weight:400!important; line-height:1.5; margin-top:7px; }
+      .field input[type="checkbox"] { width:18px; height:18px; flex:0 0 18px; margin:2px 0 0; accent-color:var(--red); }
+      .referral-consent a { text-decoration:underline; }
+      .referral-preview { grid-column:1/-1; border:1px solid rgba(245,183,62,.4); background:var(--gold-soft); border-radius:10px; padding:15px 16px; color:var(--ink); font-size:14px; line-height:1.7; }
+      .referral-preview strong { color:var(--gold); }
+      .referral-review { text-align:left; line-height:1.7; }
+      .referral-review .btn { margin-top:14px; }
+      #referralShareStatus { margin:12px 0 0; font-size:14px; color:var(--gold); }
+      @media(max-width:640px) { .referral-banner { grid-template-columns:1fr; padding:24px; } .referral-perk { grid-row:1; display:flex; gap:16px; align-items:center; text-align:left; padding:18px; } .referral-perk strong { font-size:56px; } }
+
       /* ---------- order form ---------- */
       .order-panel {
         background: var(--panel); border: 1px solid var(--line);
@@ -766,6 +788,7 @@
           <a href="#cat-ai">AI Tools</a>
           <a href="#cat-editing">Editing</a>
           <a href="#products">All Products</a>
+          <a href="#referrals">Referrals</a>
           <a href="#order">Order</a>
         </nav>
         <span class="open-chip" id="openChip"><span class="dot"></span><span id="openText">Online daily · 2 PM – 10 PM</span></span>
@@ -1403,6 +1426,36 @@
         </div>
       </section>
 
+      <!-- ============ REFERRALS ============ -->
+      <section id="referrals" aria-labelledby="referralHeading">
+        <div class="wrap">
+          <div class="referral-banner">
+            <div>
+              <span class="tag">Better with friends</span>
+              <h2 id="referralHeading">A friend sent you? Save 3%.</h2>
+              <p>New to Digicounts? Get <strong>3% off your first eligible paid order</strong> when an existing customer refers you. Add their customer name or referral code at checkout. We verify the referral and confirm your final total on WhatsApp before you pay.</p>
+              <div class="referral-actions">
+                <a class="btn btn-red" href="#order" id="claimReferral">Claim 3% off</a>
+                <button class="btn" type="button" id="shareReferral">Share with a friend</button>
+              </div>
+              <p id="referralShareStatus" role="status" aria-live="polite"></p>
+              <details class="referral-terms" id="referralTerms">
+                <summary>How it works &amp; offer terms</summary>
+                <ul>
+                  <li>Ask an existing Digicounts customer for their customer name or a referral code issued by Digicounts.</li>
+                  <li>Enter that referral in the order form and confirm this is your first order.</li>
+                  <li>We verify the referrer and your first-order eligibility on WhatsApp. The discount is confirmed before payment.</li>
+                  <li>One 3% discount per new customer, on one available fixed-price subscription. Pre-orders, combo offers, free-bundle offers and custom quotes are excluded.</li>
+                  <li>No self-referrals, cash value or combining with other discounts. Savings are rounded to the nearest paisa. Refunds are based on the amount actually paid.</li>
+                  <li>This offer discounts the new customer's first order; it does not create a cash reward or account credit for the referrer.</li>
+                </ul>
+              </details>
+            </div>
+            <div class="referral-perk"><strong>3%</strong><span>OFF YOUR FIRST<br />ELIGIBLE ORDER</span></div>
+          </div>
+        </div>
+      </section>
+
       <!-- ============ ORDER FORM ============ -->
       <section id="order">
         <div class="wrap">
@@ -1463,6 +1516,14 @@
                 <input id="orderWhatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="98XXXXXXXX" required />
                 <span class="err">Please enter your WhatsApp number.</span>
               </div>
+              <div class="field full" id="f-referral">
+                <label for="orderReferral">Referred by <span class="opt">(optional · 3% first-order offer)</span></label>
+                <input id="orderReferral" name="referral" type="text" maxlength="80" autocomplete="off" placeholder="Existing customer's name or referral code" aria-describedby="referralHelp referralError" />
+                <span class="referral-help" id="referralHelp">Your referral is verified on WhatsApp before payment. <a href="#referralTerms">View offer terms</a>.</span>
+                <label class="referral-consent" for="referralFirstOrder"><input id="referralFirstOrder" type="checkbox" name="referral_first_order" /><span>This is my first Digicounts order and I agree to the <a href="#referralTerms">referral offer terms</a>.</span></label>
+                <span class="err" id="referralError" role="alert"></span>
+              </div>
+              <div class="referral-preview" id="referralPreview" role="status" aria-live="polite" hidden></div>
               <div class="order-actions">
                 <button type="submit" class="btn btn-red btn-block" id="orderSubmit">Place Order</button>
                 <p class="order-note">Your order is recorded with the exact date &amp; time (Nepal time).</p>
@@ -1485,6 +1546,11 @@
                   <li>Take a screenshot</li>
                 </ol>
                 <a class="btn btn-wa btn-block" id="payDoneBtn" href="#" target="_blank" rel="noopener">✅ Payment Done — Confirm on WhatsApp</a>
+              </div>
+              <div class="referral-review" id="referralReview" hidden>
+                <p id="referralReviewSummary"></p>
+                <p><strong>Please wait for confirmation before paying.</strong> We check your referral and confirm the final total on WhatsApp.</p>
+                <a class="btn btn-wa btn-block" id="referralConfirmBtn" href="#" target="_blank" rel="noopener">Verify referral on WhatsApp</a>
               </div>
               <div id="payNoPrice" hidden>
                 <div class="pay-noprice">
@@ -1784,6 +1850,45 @@
         if (!form) return;
         var planSel = document.getElementById('orderPlan');
         var waIn = document.getElementById('orderWhatsapp');
+        var referralIn = document.getElementById('orderReferral');
+        var firstOrderIn = document.getElementById('referralFirstOrder');
+        var referralPreview = document.getElementById('referralPreview');
+        var referralError = document.getElementById('referralError');
+        var referralReview = document.getElementById('referralReview');
+        var referralReviewSummary = document.getElementById('referralReviewSummary');
+        var referralConfirmBtn = document.getElementById('referralConfirmBtn');
+        var payTitle = document.querySelector('.pay-title');
+
+        function money(amount) {
+          return 'Rs ' + amount.toLocaleString('en-IN', { minimumFractionDigits: amount % 1 ? 2 : 0, maximumFractionDigits: 2 });
+        }
+        function referralQuote(plan) {
+          var matches = plan.match(/Rs\s*[\d,]+/g);
+          var price = matches ? parseInt(matches[matches.length - 1].replace(/[^\d]/g, ''), 10) : null;
+          var selected = planSel.options[planSel.selectedIndex];
+          var eligible = !!(price > 0 && selected && !selected.disabled && !/pre-order|combo|\bfree\b|\+/i.test(plan));
+          var discount = eligible ? Math.round(price * 3) / 100 : 0;
+          return { eligible: eligible, price: price, discount: discount, total: eligible ? Math.round(price * 100 - discount * 100) / 100 : price };
+        }
+        function updateReferralPreview() {
+          var hasReferral = !!referralIn.value.trim();
+          referralPreview.hidden = !hasReferral;
+          if (!hasReferral) return;
+          var quote = referralQuote(planSel.value);
+          referralPreview.textContent = quote.eligible
+            ? 'Referral estimate: ' + money(quote.price) + ' − 3% (' + money(quote.discount) + ') = ' + money(quote.total) + '. Subject to referral verification; wait for confirmation before payment.'
+            : 'Choose an available fixed-price plan to see your 3% saving. Pre-orders, combos, free bundles and custom quotes are excluded.';
+        }
+        referralIn.addEventListener('input', function () { setInvalid('f-referral', false); updateReferralPreview(); });
+        firstOrderIn.addEventListener('change', function () { setInvalid('f-referral', false); });
+        document.getElementById('claimReferral').addEventListener('click', function () { referralIn.focus({ preventScroll: true }); });
+        document.getElementById('shareReferral').addEventListener('click', function () {
+          var shareText = 'A friend sent you? Get 3% off your first eligible Digicounts order. Enter your referrer’s customer name or referral code at checkout. Verification and offer terms apply. https://digicounts.github.io/#referrals';
+          var status = document.getElementById('referralShareStatus');
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(shareText).then(function () { status.textContent = 'Copied! Send it to your friend and include your Digicounts customer name.'; }).catch(function () { status.textContent = 'Share this link with your friend: https://digicounts.github.io/#referrals'; });
+          } else { status.textContent = 'Share this link with your friend: https://digicounts.github.io/#referrals'; }
+        });
         var submitBtn = document.getElementById('orderSubmit');
         var successBox = document.getElementById('orderSuccess');
         var payPanel = document.getElementById('payPanel');
@@ -1804,6 +1909,7 @@
             if (plan && planSel) {
               planSel.value = plan;
               document.getElementById('f-plan').classList.remove('invalid');
+              updateReferralPreview();
             }
           });
         });
@@ -1812,7 +1918,7 @@
           document.getElementById(fieldId).classList.toggle('invalid', bad);
           return !bad;
         }
-        planSel.addEventListener('change', function () { setInvalid('f-plan', false); });
+        planSel.addEventListener('change', function () { setInvalid('f-plan', false); updateReferralPreview(); });
         waIn.addEventListener('input', function () { setInvalid('f-whatsapp', false); });
 
         function nepalDateTime(d) {
@@ -1832,9 +1938,18 @@
           ev.preventDefault();
           var plan = planSel.value;
           var whatsapp = waIn.value.trim();
+          var referral = referralIn.value.trim();
+          var quote = referralQuote(plan);
+          var referralProblem = referral && !firstOrderIn.checked
+            ? 'Confirm this is your first order and accept the referral terms.'
+            : referral && !quote.eligible ? 'Choose an eligible plan or clear the referral to continue.' : '';
+          referralError.textContent = referralProblem;
 
           var ok = true;
           ok = setInvalid('f-whatsapp', !whatsapp) && ok;
+          ok = setInvalid('f-referral', !!referralProblem) && ok;
+          var selectedPlan = planSel.options[planSel.selectedIndex];
+          ok = setInvalid('f-plan', !!(selectedPlan && selectedPlan.disabled)) && ok;
           if (!ok) {
             var firstBad = form.querySelector('.field.invalid');
             if (firstBad) firstBad.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1862,7 +1977,8 @@
           var orderLines =
             'Hi Digicounts, I placed an order from the website.\n' +
             (plan ? 'Plan: ' + plan + '\n' : '') +
-            (priceText ? 'Total: ' + priceText + '\n' : '') +
+            (priceText ? (referral ? 'Listed price: ' : 'Total: ') + priceText + '\n' : '') +
+            (referral ? 'Referred by: ' + referral + '\nFirst order: Yes\nReferral status: Pending verification\n3% saving: ' + money(quote.discount) + '\nEstimated total after approval: ' + money(quote.total) + '\nPlease verify my referral and confirm the final total before I pay.\n' : '') +
             'WhatsApp: ' + whatsapp +
             '\nOrdered from website on ' + npt;
           var waOrderUrl = 'https://wa.me/9779824278987?text=' + encodeURIComponent(orderLines);
@@ -1875,7 +1991,15 @@
             var p = document.createElement('strong');
             p.textContent = plan || 'Your order';
             paySummary.appendChild(p);
-            if (priceText) {
+            referralReview.hidden = !referral;
+            payTitle.textContent = referral ? 'Confirm your referral' : 'Pay now with FonePay';
+            if (referral) {
+              referralReviewSummary.textContent = 'Listed price: ' + money(quote.price) + '. Proposed 3% saving: ' + money(quote.discount) + '. Estimated total after approval: ' + money(quote.total) + '.';
+              referralConfirmBtn.href = waOrderUrl;
+              payPriced.hidden = true;
+              payNoPrice.hidden = true;
+              payLaterWrap.hidden = true;
+            } else if (priceText) {
               payTotal.textContent = '';
               var tSmall = document.createElement('small');
               tSmall.textContent = 'Total: ';
@@ -1902,6 +2026,9 @@
             line.textContent = recorded
               ? 'Order recorded ✅ — ' + npt + '. Now complete your payment below.'
               : 'Order recorded ✅ — ' + npt + '. Now complete your payment below — and please use a button below so we receive your order on WhatsApp.';
+            if (referral) {
+              line.textContent = (recorded ? 'Referral request recorded — ' : 'Referral request ready — ') + npt + '. Confirm your referral and final total on WhatsApp before paying.';
+            }
             successBox.appendChild(line);
             successBox.classList.add('show');
             submitBtn.disabled = false;
@@ -1917,7 +2044,13 @@
               whatsapp: whatsapp,
               plan: plan || '(not selected)',
               order_datetime_nepal: npt,
-              order_datetime_iso: iso
+              order_datetime_iso: iso,
+              referral: referral || '(none)',
+              referral_status: referral ? 'pending_verification' : 'not_requested',
+              first_order_declared: referral ? firstOrderIn.checked : false,
+              listed_price_npr: priceNum,
+              proposed_referral_discount_npr: referral ? quote.discount : 0,
+              estimated_total_npr: referral ? quote.total : priceNum
             })
           }).then(function (res) {
             finish(res.ok);
