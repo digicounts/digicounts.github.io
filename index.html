@@ -837,6 +837,18 @@
         .nf-art img { height: 68px; }
       }
     </style>
+
+    <style>
+      /* Digicounts 4-column sections — every section, 4 in a row */
+      .grid { grid-template-columns: repeat(4, 1fr); }
+      @media (max-width: 980px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+      @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+      .grid .combo-card { margin-top: 0; height: 100%; flex-direction: column; align-items: stretch; }
+      .grid .combo-card .dur { font-size: 21px; }
+      .grid .combo-card .price { font-size: 32px; }
+      .grid .combo-card .own-price { margin-top: 12px; }
+      .grid .combo-card .btn { margin-top: auto; }
+    </style>
   </head>
   <body>
     <div class="topbar">
@@ -897,7 +909,7 @@
       <div class="wrap shop-nav-in">
         <div class="shop-chips" role="group" aria-label="Filter by category">
           <button type="button" class="shop-chip active" data-filter="all">All</button>
-          <button type="button" class="shop-chip" data-filter="offers">Festive offers</button>
+          
           <button type="button" class="shop-chip" data-filter="netflix">Netflix</button>
           <button type="button" class="shop-chip" data-filter="video">Video</button>
           <button type="button" class="shop-chip" data-filter="music">Music</button>
@@ -1009,7 +1021,24 @@
             </div>
             <a class="btn btn-wa" href="#order" data-plan="Netflix 1 Month – 5 Screens on my own Gmail (4K UHD)  — was Rs 1,999, now Rs 1,499 · 25% OFF">Order this plan</a>
           </article>
-          <article class="plan-own reveal product-card" data-cat="netflix" data-name="netflix prime video combo">
+          
+      
+      
+      
+        </div>
+      </section>
+
+      <!-- ============ ALL PRODUCTS ============ -->
+      <section id="products" class="alt">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <div class="tag">Full catalogue</div>
+            <h2>All products &amp; prices</h2>
+            <p>Grouped by type so you can find yours fast — tap a category above or use the search bar. Every price below is the real Digicounts price. Tap Order and your plan is already selected in the order form below.</p>
+          </div>
+          <div class="grid">
+              <h3 class="cat-head" id="cat-combo">Combo Packages <small>Netflix + Prime Video together — save more</small></h3>
+              <article class="plan-own combo-card reveal product-card" data-cat="netflix" data-name="netflix prime video combo">
             <span class="flag" style="background:var(--red);color:#fff">Combo offer</span>
             <div class="own-main">
               <div class="dur">Netflix + Prime Video · 1 Month</div>
@@ -1023,7 +1052,7 @@
             </div>
             <a class="btn btn-wa" href="#order" data-plan="Netflix + Prime Video 1 Month — was Rs 499, now Rs 399 · 20% OFF">Order this combo</a>
           </article>
-      <article class="plan-own reveal product-card" data-cat="netflix" data-name="netflix prime video combo">
+              <article class="plan-own combo-card reveal product-card" data-cat="netflix" data-name="netflix prime video combo">
         <span class="flag" style="background:var(--red);color:#fff">Combo offer</span>
         <div class="own-main">
         <div class="dur">Netflix + Prime Video · 3 Months Netflix + 6 Months Prime</div>
@@ -1037,7 +1066,7 @@
         </div>
         <a class="btn btn-wa" href="#order" data-plan="Netflix + Prime Video — 3 Months Netflix + 6 Months Prime — Rs 1,299">Order this combo</a>
       </article>
-      <article class="plan-own reveal product-card" data-cat="netflix" data-name="netflix prime video combo">
+              <article class="plan-own combo-card reveal product-card" data-cat="netflix" data-name="netflix prime video combo">
         <span class="flag" style="background:var(--red);color:#fff">Combo offer</span>
         <div class="own-main">
         <div class="dur">Netflix + Prime Video · 6 Months Netflix + 6 Months Prime</div>
@@ -1051,7 +1080,7 @@
         </div>
         <a class="btn btn-wa" href="#order" data-plan="Netflix + Prime Video — 6 Months Netflix + 6 Months Prime — Rs 2,299">Order this combo</a>
       </article>
-      <article class="plan-own reveal product-card" data-cat="netflix" data-name="netflix prime video combo">
+              <article class="plan-own combo-card reveal product-card" data-cat="netflix" data-name="netflix prime video combo">
         <span class="flag" style="background:var(--red);color:#fff">Combo offer</span>
         <div class="own-main">
         <div class="dur">Netflix + Prime Video · 12 Months Netflix + 12 Months Prime</div>
@@ -1065,18 +1094,6 @@
         </div>
         <a class="btn btn-wa" href="#order" data-plan="Netflix + Prime Video — 12 Months Netflix + 12 Months Prime — Rs 3,999">Order this combo</a>
       </article>
-        </div>
-      </section>
-
-      <!-- ============ ALL PRODUCTS ============ -->
-      <section id="products" class="alt">
-        <div class="wrap">
-          <div class="sec-head reveal">
-            <div class="tag">Full catalogue</div>
-            <h2>All products &amp; prices</h2>
-            <p>Grouped by type so you can find yours fast — tap a category above or use the search bar. Every price below is the real Digicounts price. Tap Order and your plan is already selected in the order form below.</p>
-          </div>
-          <div class="grid">
 
             <h3 class="cat-head" id="cat-video">Video &amp; Streaming <small>Movies, series &amp; ad-free video</small></h3>
 
